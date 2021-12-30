@@ -95,7 +95,7 @@ export const main = async (req, res, error) => {
         break;
       } else {
         response = `CON Choose the information you need \n
-                  1. Climate change
+                  1. Weather Forecasting
       `;
         break;
       }
@@ -110,7 +110,7 @@ export const main = async (req, res, error) => {
       } else {
         response = "CON Choose province";
         for (let i = 0; i < 5; i++) {
-          response = response + `${i + 1}. ${locations[i].province}`;
+          response = response + `\n${i + 1}. ${locations[i].province}`;
         }
         break;
       }
@@ -187,16 +187,7 @@ export const main = async (req, res, error) => {
           ).getMinutes()} 
               `;
           break;
-        } else {
-          response = `CON Hitamo icyiciro
-                  1. Igihe cyihinga
-                  2. Igihingwa k'akarere
-                  3. Iyuhira
-                  4. Kubungabunga ibidukikije no kongera umusaruro
-                  5. Imbuto zo guhinga
-                  100. Subira inyuma
-              `;
-          break;
+        }
         }
       } else {
         const chosenProvince = menuArguments[2];
@@ -247,16 +238,6 @@ export const main = async (req, res, error) => {
           ).getMinutes()} 
                 `;
           break;
-        } else {
-          response = `CON Select section
-                  1. Agriculture periods
-                  2. Your district's crop
-                  3. Irrigation
-                  4. Environment conservation and increasing crop yield
-                  5. Agriculture fruits
-                  100. Back
-              `;
-          break;
         }
       }
     }
@@ -278,28 +259,7 @@ export const main = async (req, res, error) => {
               ${formatedSeason.next().value}
             `;
         break;
-      } else if (parseInt(menuArguments[3], 10) === 2) {
-        response = "END Turacyakusanya amakuru yose!";
-        break;
-      } else if (parseInt(menuArguments[3], 10) === 3) {
-        response = "END Turacyakusanya amakuru yose!";
-        break;
-      } else if (parseInt(menuArguments[3], 10) === 4) {
-        response = "END Turacyakusanya amakuru yose!";
-        break;
-      } else if (parseInt(menuArguments[3], 10) === 5) {
-        response = "END Turacyakusanya amakuru yose!";
-        break;
-      } else if (parseInt(menuArguments[3], 10) === 6) {
-        response = "END Turacyakusanya amakuru yose!";
-        break;
-      } else if (parseInt(menuArguments[3], 10) === 7) {
-        response = "END Turacyakusanya amakuru yose!";
-        break;
-      } else {
-        response = "END Umubare muhisemo ntiwemewe!";
-        break;
-      }
+      } 
     }
 
     default:
