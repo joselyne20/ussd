@@ -95,7 +95,7 @@ export const main = async (req, res, error) => {
         break;
       } else {
         response = `CON Choose the information you need \n
-                  1. Weather Forecasting
+                  1. Climate change
       `;
         break;
       }
@@ -184,7 +184,17 @@ export const main = async (req, res, error) => {
                         weatherInfo.sys.sunset
                       ).getHours()}:${new Date(
             weatherInfo.sys.sunset
-          ).getMinutes()} 
+            ).getMinutes()} 
+              `;
+          break;
+        } else {
+          response = `CON Hitamo icyiciro
+                  1. Igihe cyihinga
+                  2. Igihingwa k'akarere
+                  3. Iyuhira
+                  4. Kubungabunga ibidukikije no kongera umusaruro
+                  5. Imbuto zo guhinga
+                  100. Subira inyuma
               `;
           break;
         }
@@ -237,8 +247,60 @@ export const main = async (req, res, error) => {
           ).getMinutes()} 
                 `;
           break;
+        } else {
+          response = `CON Select section
+                  1. Agriculture periods
+                  2. Your district's crop
+                  3. Irrigation
+                  4. Environment conservation and increasing crop yield
+                  5. Agriculture fruits
+                  100. Back
+              `;
+          break;
         }
       }
+    }
+
+    case 5: {
+      if (parseInt(menuArguments[3], 10) === 1) {
+        const client = contentful.createClient({
+          space: process.env.CT_SPACE_ID,
+          accessToken: process.env.CT_DELIVERY_ACCESS_KEY,
+        });
+        const seasonsJson = await client.getEntries({
+          content_type: "agricultureSeason",
+          "fields.year": "2019-2020",
+        });
+        const formatedSeason = formatSeasons(seasonsJson.items);
+        response = `END ${formatedSeason.next().value}
+              ${formatedSeason.next().value}
+              ${formatedSeason.next().value}
+              ${formatedSeason.next().value}
+            `;
+        break;
+      } else if (parseInt(menuArguments[3], 10) === 2) {
+        response = "END Turacyakusanya amakuru yose!";
+        break;
+      } else if (parseInt(menuArguments[3], 10) === 3) {
+        response = "END Turacyakusanya amakuru yose!";
+        break;
+      } else if (parseInt(menuArguments[3], 10) === 4) {
+        response = "END Turacyakusanya amakuru yose!";
+        break;
+      } else if (parseInt(menuArguments[3], 10) === 5) {
+        response = "END Turacyakusanya amakuru yose!";
+        break;
+      } else if (parseInt(menuArguments[3], 10) === 6) {
+        response = "END Turacyakusanya amakuru yose!";
+        break;
+      } else if (parseInt(menuArguments[3], 10) === 7) {
+        response = "END Turacyakusanya amakuru yose!";
+        break;
+      } else {
+        response = "END Umubare muhisemo ntiwemewe!";
+        break;
+      }
+    }
 
     default:
       response = "END Wrong choice!";
