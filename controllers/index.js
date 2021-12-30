@@ -188,7 +188,6 @@ export const main = async (req, res, error) => {
               `;
           break;
         }
-        }
       } else {
         const chosenProvince = menuArguments[2];
         const chosenDistrict = menuArguments[3];
@@ -240,27 +239,6 @@ export const main = async (req, res, error) => {
           break;
         }
       }
-    }
-
-    case 5: {
-      if (parseInt(menuArguments[3], 10) === 1) {
-        const client = contentful.createClient({
-          space: process.env.CT_SPACE_ID,
-          accessToken: process.env.CT_DELIVERY_ACCESS_KEY,
-        });
-        const seasonsJson = await client.getEntries({
-          content_type: "agricultureSeason",
-          "fields.year": "2019-2020",
-        });
-        const formatedSeason = formatSeasons(seasonsJson.items);
-        response = `END ${formatedSeason.next().value}
-              ${formatedSeason.next().value}
-              ${formatedSeason.next().value}
-              ${formatedSeason.next().value}
-            `;
-        break;
-      } 
-    }
 
     default:
       response = "END Wrong choice!";
