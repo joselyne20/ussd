@@ -104,7 +104,7 @@ export const main = async (req, res, error) => {
       if (parseInt(menuArguments[0], 10) === 1) {
         response = "CON Hitamo intara";
         for (let i = 0; i < 5; i++) {
-          response = response + `\n${i + 1}. ${locations[i].province}`;
+          response = response + `\n${i + 1}. ${locations[i].intara}`;
         }
         break;
       } else {
