@@ -66,6 +66,46 @@ export const main = async (req, res, error) => {
       ],
     },
   ];
+   const locations = [
+    {
+      Intara: "West",
+      districts: [
+        { district: "Rubavu", cities: ["Rubavu", "Gisenyi"] },
+        { district: "Karongi", cities: ["Kibuye"] },
+        { district: "Rusizi", cities: ["Cyangugu"] },
+      ],
+    },
+    {
+        Intara: "East",
+      districts: [{ district: "Ngoma", cities: ["Kibungo"] }],
+    },
+    {
+     Intara: "South",
+      districts: [
+        { district: "Huye", cities: ["Huye"] },
+        { district: "Muhanga", cities: ["Gitarama"] },
+        { district: "Nyamagabe", cities: ["Nzega"] },
+        { district: "Nyaruguru", cities: ["Gikongoro"] },
+      ],
+    },
+    {
+      Intara: "North",
+      districts: [
+        { district: "Musanze", cities: ["Musanze"] },
+        { district: "Gicumbi", cities: ["Byumba"] },
+      ],
+    },
+    {
+      Intara: "Umujyi wa Kigali",
+      districts: [
+        // { district: "Kigali", cities: ["Kigali"] },
+        { district: "Kicukiro", cities: ["Samuduha", "Nyakabanda"] },
+        { district: "Nyarugenge", cities: ["Kannyogo"] },
+        { district: "Gasabo", cities: ["Kigali"] },
+      ],
+    },
+  ];
+
 
   if (text) {
     menuArguments = text.split("*");
@@ -95,7 +135,7 @@ export const main = async (req, res, error) => {
         break;
       } else {
         response = `CON Choose the information you need \n
-                  1. Climate change
+                  1. Weather forecasting
       `;
         break;
       }
@@ -110,7 +150,7 @@ export const main = async (req, res, error) => {
       } else {
         response = "CON Choose province";
         for (let i = 0; i < 5; i++) {
-          response = response + `\n${i + 1}. ${locations[i].province}`;
+          response = response + `\n${i + 1}. ${locations[i].Intara}`;
         }
         break;
       }
