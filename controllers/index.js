@@ -96,7 +96,7 @@ export const main = async (req, res, error) => {
       ],
     },
     {
-      province: "Umujyi wa Kigali",
+      province: "Kigali City",
       districts: [
         // { district: "Kigali", cities: ["Kigali"] },
         { district: "Kicukiro", cities: ["Samuduha", "Nyakabanda"] },
@@ -186,8 +186,7 @@ export const main = async (req, res, error) => {
           const district = locations[chosenProvince - 1].districts
             ? locations[chosenProvince - 1].districts[chosenDistrict - 1]
             : undefined;
-
-          if (!district) {
+                    if (!district) {
             response = "END Ibyo mwahisemo nibikunze";
             break;
           }
@@ -242,8 +241,8 @@ export const main = async (req, res, error) => {
         const chosenProvince = menuArguments[2];
         const chosenDistrict = menuArguments[3];
 
-        const districtData = locations[chosenProvince - 1].districts
-          ? locations[chosenProvince - 1].districts[chosenDistrict - 1]
+        const districtData = location[chosenProvince - 1].districts
+          ? location[chosenProvince - 1].districts[chosenDistrict - 1]
           : undefined;
 
         if (!district) {
