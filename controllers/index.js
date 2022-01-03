@@ -68,7 +68,7 @@ export const main = async (req, res, error) => {
   ];
    const location = [
     {
-      Intara: "West",
+      province: "West",
       districts: [
         { district: "Rubavu", cities: ["Rubavu", "Gisenyi"] },
         { district: "Karongi", cities: ["Kibuye"] },
@@ -76,11 +76,11 @@ export const main = async (req, res, error) => {
       ],
     },
     {
-        Intara: "East",
+        province: "East",
       districts: [{ district: "Ngoma", cities: ["Kibungo"] }],
     },
     {
-     Intara: "South",
+ province: "South",
       districts: [
         { district: "Huye", cities: ["Huye"] },
         { district: "Muhanga", cities: ["Gitarama"] },
@@ -89,14 +89,14 @@ export const main = async (req, res, error) => {
       ],
     },
     {
-      Intara: "North",
+     province: "North",
       districts: [
         { district: "Musanze", cities: ["Musanze"] },
         { district: "Gicumbi", cities: ["Byumba"] },
       ],
     },
     {
-      Intara: "Umujyi wa Kigali",
+      province: "Umujyi wa Kigali",
       districts: [
         // { district: "Kigali", cities: ["Kigali"] },
         { district: "Kicukiro", cities: ["Samuduha", "Nyakabanda"] },
@@ -150,7 +150,7 @@ export const main = async (req, res, error) => {
       } else {
         response = "CON Choose province";
         for (let i = 0; i < 5; i++) {
-          response = response + `\n${i + 1}. ${location[i].Intara}`;
+          response = response + `\n${i + 1}. ${location[i].province}`;
         }
         break;
       }
@@ -268,9 +268,7 @@ export const main = async (req, res, error) => {
               .on("error", (err) => {
                 return reject(err);
               });
-          });
-
-          response = `END Weather forecast in ${districtData.district} \n
+          });          response = `END Weather forecast in ${districtData.district} \n
                         The weather will mostly be ${
                           weatherInfo.weather[0].description
                         } \n
