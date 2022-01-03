@@ -277,49 +277,7 @@ export const main = async (req, res, error) => {
           break;
         }
       }
-    }
-
-    case 5: {
-      if (parseInt(menuArguments[3], 10) === 1) {
-        const client = contentful.createClient({
-          space: process.env.CT_SPACE_ID,
-          accessToken: process.env.CT_DELIVERY_ACCESS_KEY,
-        });
-        const seasonsJson = await client.getEntries({
-          content_type: "agricultureSeason",
-          "fields.year": "2019-2020",
-        });
-        const formatedSeason = formatSeasons(seasonsJson.items);
-        response = `END ${formatedSeason.next().value}
-              ${formatedSeason.next().value}
-              ${formatedSeason.next().value}
-              ${formatedSeason.next().value}
-            `;
-        break;
-      } else if (parseInt(menuArguments[3], 10) === 2) {
-        response = "END Turacyakusanya amakuru yose!";
-        break;
-      } else if (parseInt(menuArguments[3], 10) === 3) {
-        response = "END Turacyakusanya amakuru yose!";
-        break;
-      } else if (parseInt(menuArguments[3], 10) === 4) {
-        response = "END Turacyakusanya amakuru yose!";
-        break;
-      } else if (parseInt(menuArguments[3], 10) === 5) {
-        response = "END Turacyakusanya amakuru yose!";
-        break;
-      } else if (parseInt(menuArguments[3], 10) === 6) {
-        response = "END Turacyakusanya amakuru yose!";
-        break;
-      } else if (parseInt(menuArguments[3], 10) === 7) {
-        response = "END Turacyakusanya amakuru yose!";
-        break;
-      } else {
-        response = "END Umubare muhisemo ntiwemewe!";
-        break;
-      }
-    }
-
+  }
     default:
       response = "END Wrong choice!";
       break;
