@@ -186,7 +186,8 @@ export const main = async (req, res, error) => {
           const district = locations[chosenProvince - 1].districts
             ? locations[chosenProvince - 1].districts[chosenDistrict - 1]
             : undefined;
-                    if (!district) {
+
+          if (!district) {
             response = "END Ibyo mwahisemo nibikunze";
             break;
           }
@@ -226,8 +227,7 @@ export const main = async (req, res, error) => {
             ).getMinutes()} 
               `;
           break;
-        } 
-         else {
+        } else {
           response = `CON Hitamo icyiciro
                   1. Igihe cyihinga
                   2. Igihingwa k'akarere
@@ -238,13 +238,12 @@ export const main = async (req, res, error) => {
               `;
           break;
         }
-        }
       } else {
         const chosenProvince = menuArguments[2];
         const chosenDistrict = menuArguments[3];
 
-        const districtData = location[chosenProvince - 1].districts
-          ? location[chosenProvince - 1].districts[chosenDistrict - 1]
+        const districtData = locations[chosenProvince - 1].districts
+          ? locations[chosenProvince - 1].districts[chosenDistrict - 1]
           : undefined;
 
         if (!district) {
@@ -269,7 +268,9 @@ export const main = async (req, res, error) => {
               .on("error", (err) => {
                 return reject(err);
               });
-          });          response = `END Weather forecast in ${districtData.district} \n
+          });
+
+          response = `END Weather forecast in ${districtData.district} \n
                         The weather will mostly be ${
                           weatherInfo.weather[0].description
                         } \n
@@ -286,8 +287,7 @@ export const main = async (req, res, error) => {
           ).getMinutes()} 
                 `;
           break;
-        }
-        else {
+        } else {
           response = `CON Select section
                   1. Agriculture periods
                   2. Your district's crop
@@ -299,8 +299,9 @@ export const main = async (req, res, error) => {
           break;
         }
       }
-  }
-   case 5: {
+    }
+
+    case 5: {
       if (parseInt(menuArguments[3], 10) === 1) {
         const client = contentful.createClient({
           space: process.env.CT_SPACE_ID,
