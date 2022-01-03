@@ -226,16 +226,7 @@ export const main = async (req, res, error) => {
             ).getMinutes()} 
               `;
           break;
-        } else {
-          response = `CON Hitamo icyiciro
-                  1. Igihe cyihinga
-                  2. Igihingwa k'akarere
-                  3. Iyuhira
-                  4. Kubungabunga ibidukikije no kongera umusaruro
-                  5. Imbuto zo guhinga
-                  100. Subira inyuma
-              `;
-          break;
+        } 
         }
       } else {
         const chosenProvince = menuArguments[2];
@@ -283,16 +274,6 @@ export const main = async (req, res, error) => {
             weatherInfo.sys.sunset
           ).getMinutes()} 
                 `;
-          break;
-        } else {
-          response = `CON Select section
-                  1. Agriculture periods
-                  2. Your district's crop
-                  3. Irrigation
-                  4. Environment conservation and increasing crop yield
-                  5. Agriculture fruits
-                  100. Back
-              `;
           break;
         }
       }
