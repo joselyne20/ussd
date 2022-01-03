@@ -66,7 +66,7 @@ export const main = async (req, res, error) => {
       ],
     },
   ];
-   const locations = [
+   const location = [
     {
       Intara: "West",
       districts: [
@@ -150,7 +150,7 @@ export const main = async (req, res, error) => {
       } else {
         response = "CON Choose province";
         for (let i = 0; i < 5; i++) {
-          response = response + `\n${i + 1}. ${locations[i].Intara}`;
+          response = response + `\n${i + 1}. ${location[i].Intara}`;
         }
         break;
       }
