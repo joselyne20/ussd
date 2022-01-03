@@ -29,7 +29,7 @@ export const main = async (req, res, error) => {
 
   const locations = [
     {
-      province: "west",
+      province: "Uburengerazuba",
       districts: [
         { district: "Rubavu", cities: ["Rubavu", "Gisenyi"] },
         { district: "Karongi", cities: ["Kibuye"] },
@@ -37,11 +37,11 @@ export const main = async (req, res, error) => {
       ],
     },
     {
-      province: "east",
+        province: "Uburasirazuba",
       districts: [{ district: "Ngoma", cities: ["Kibungo"] }],
     },
     {
-      province: "south",
+      province: "Amajyepfo",
       districts: [
         { district: "Huye", cities: ["Huye"] },
         { district: "Muhanga", cities: ["Gitarama"] },
@@ -50,14 +50,14 @@ export const main = async (req, res, error) => {
       ],
     },
     {
-      province: "north",
+      province: "Amajyaruguru",
       districts: [
         { district: "Musanze", cities: ["Musanze"] },
         { district: "Gicumbi", cities: ["Byumba"] },
       ],
     },
     {
-      province: "kigali",
+      province: "Umujyi wa Kigali",
       districts: [
         // { district: "Kigali", cities: ["Kigali"] },
         { district: "Kicukiro", cities: ["Samuduha", "Nyakabanda"] },
