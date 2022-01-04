@@ -33,6 +33,7 @@ export const main = async (req, res, error) => {
       districts: [
         { district: "Rubavu", cities: ["Rubavu", "Gisenyi"] },
         { district: "Karongi", cities: ["Kibuye"] },
+           { district: "Rutsiro", cities: ["Kibuye"] },
         { district: "Rusizi", cities: ["Cyangugu"] },
       ],
     },
