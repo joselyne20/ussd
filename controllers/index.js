@@ -193,6 +193,12 @@ export const main = async (req, res, error) => {
           if (!district) {
             response = "END Ibyo mwahisemo nibikunze";
             break;
+            
+          if (!district) {
+            response = "CON Ongera ushyirimo izina ry'akarere";
+            break;
+          }
+
           }
           const WEATHER_API = `https://api.openweathermap.org/data/2.5/weather?q=${district.cities[0]},rw&units=metric&appid=${process.env.OPEN_WEATHER_API_KEY}`;
 
