@@ -181,27 +181,7 @@ export const main = async (req, res, error) => {
       }
     }
 
-    case 4: {
-      if (parseInt(menuArguments[0], 10) === 1) {
-        if (parseInt(menuArguments[1], 10) === 1) {
-          const chosenProvince = menuArguments[2];
-          const chosenDistrict = menuArguments[3];
-
-          const district = locations[chosenProvince - 1].districts
-            ? locations[chosenProvince - 1].districts[chosenDistrict - 1]
-            : undefined;
-
-          if (!district) {
-            response = "END Ibyo mwahisemo nibikunze";
-            break;
-            
-          if (!district) {
-            response = "CON Ongera ushyirimo izina ry'akarere";
-            break;
-          }
-
-          }
-          const WEATHER_API = `https://api.openweathermap.org/data/2.5/weather?q=${district.cities[0]},rw&units=metric&appid=${process.env.OPEN_WEATHER_API_KEY}`;
+     const WEATHER_API = `https://api.openweathermap.org/data/2.5/weather?q=${district.cities[0]},rw&units=metric&appid=${process.env.OPEN_WEATHER_API_KEY}`;
 
           const weatherInfo = await new Promise((resolve, reject) => {
             https
