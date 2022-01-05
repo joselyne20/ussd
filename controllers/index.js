@@ -1,7 +1,7 @@
 import https from "https";
 import contentful from "contentful";
 import { formatDescription } from "../utils/formatDescription.js";
-import { formatSeasons } from "../utils/formatSeasons.js";
+
 
 /**
  *
@@ -128,20 +128,8 @@ export const main = async (req, res, error) => {
                   2. English \n
       `;
       break;
-
-    case 1:
-      if (parseInt(menuArguments[0], 10) === 1) {
-        response = `CON Hitamo amakuru ushaka \n
-                  1. Iteganyagihe`;
-        break;
-      } else {
-        response = `CON Choose the information you need \n
-                  1. Weather forecasting
-      `;
-        break;
-      }
-
-    case 2: {
+  
+    case 1: {
       if (parseInt(menuArguments[0], 10) === 1) {
         response = "CON Hitamo intara";
         for (let i = 0; i < 5; i++) {
@@ -157,13 +145,13 @@ export const main = async (req, res, error) => {
       }
     }
 
-    case 3: {
+    case 2: {
       if (parseInt(menuArguments[0], 10) === 1) {
-        const chosenProvince = menuArguments[2];
+        const chosenProvince = menuArguments[1];
         const districts = locations[chosenProvince - 1].districts || [];
-
+     
         if (districts.length === 0) {
-          response = "END Ibyo mwahisemo nibikunze";
+          response = "END Ibyo mwahisemo ntibikunze";
           break;
         }
 
@@ -172,19 +160,25 @@ export const main = async (req, res, error) => {
           response = response + `\n${i + 1}. ${districts[i].district}`;
         }
         break;
-      } else {
+      } 
+      else 
+      {
+        const chosenProvince = menuArguments[1];
+        const chosenDistrict = menuArguments[2];
+const districts = location[chosenProvince - 1].districts || [];
+        
         response = "CON Choose the district";
-       for (let i = 0; i < districts.length; i++) {
+         for (let i = 0; i < districts.length; i++) {
           response = response + `\n${i + 1}. ${districts[i].district}`;
         }
-        break;
-      }
+                break;
+          }
     }
- case 4: {
+    case 3: {
       if (parseInt(menuArguments[0], 10) === 1) {
         if (parseInt(menuArguments[1], 10) === 1) {
-          const chosenProvince = menuArguments[2];
-          const chosenDistrict = menuArguments[3];
+          const chosenProvince = menuArguments[1];
+          const chosenDistrict = menuArguments[2];
 
           const district = locations[chosenProvince - 1].districts
             ? locations[chosenProvince - 1].districts[chosenDistrict - 1]
@@ -193,14 +187,13 @@ export const main = async (req, res, error) => {
           if (!district) {
             response = "END Ibyo mwahisemo nibikunze";
             break;
-            
+          }
+
           if (!district) {
             response = "CON Ongera ushyirimo izina ry'akarere";
             break;
           }
-
-          }
-     const WEATHER_API = `https://api.openweathermap.org/data/2.5/weather?q=${district.cities[0]},rw&units=metric&appid=${process.env.OPEN_WEATHER_API_KEY}`;
+          const WEATHER_API = `https://api.openweathermap.org/data/2.5/weather?q=${district.cities[0]},rw&units=metric&appid=${process.env.OPEN_WEATHER_API_KEY}`;
 
           const weatherInfo = await new Promise((resolve, reject) => {
             https
@@ -231,22 +224,12 @@ export const main = async (req, res, error) => {
             ).getMinutes()} 
               `;
           break;
-        } else {
-          response = `CON Hitamo icyiciro
-                  1. Igihe cyihinga
-                  2. Igihingwa k'akarere
-                  3. Iyuhira
-                  4. Kubungabunga ibidukikije no kongera umusaruro
-                  5. Imbuto zo guhinga
-                  100. Subira inyuma
-              `;
-          break;
         }
       } else {
-        const chosenProvince = menuArguments[2];
-        const chosenDistrict = menuArguments[3];
+        const chosenProvince = menuArguments[1];
+        const chosenDistrict = menuArguments[2];
 
-        const districtData = locations[chosenProvince - 1].districts
+        const districtData = location[chosenProvince - 1].districts
           ? locations[chosenProvince - 1].districts[chosenDistrict - 1]
           : undefined;
 
@@ -291,61 +274,9 @@ export const main = async (req, res, error) => {
           ).getMinutes()} 
                 `;
           break;
-        } else {
-          response = `CON Select section
-                  1. Agriculture periods
-                  2. Your district's crop
-                  3. Irrigation
-                  4. Environment conservation and increasing crop yield
-                  5. Agriculture fruits
-                  100. Back
-              `;
-          break;
-        }
+        } 
       }
     }
-
-    case 5: {
-      if (parseInt(menuArguments[3], 10) === 1) {
-        const client = contentful.createClient({
-          space: process.env.CT_SPACE_ID,
-          accessToken: process.env.CT_DELIVERY_ACCESS_KEY,
-        });
-        const seasonsJson = await client.getEntries({
-          content_type: "agricultureSeason",
-          "fields.year": "2019-2020",
-        });
-        const formatedSeason = formatSeasons(seasonsJson.items);
-        response = `END ${formatedSeason.next().value}
-              ${formatedSeason.next().value}
-              ${formatedSeason.next().value}
-              ${formatedSeason.next().value}
-            `;
-        break;
-      } else if (parseInt(menuArguments[3], 10) === 2) {
-        response = "END Turacyakusanya amakuru yose!";
-        break;
-      } else if (parseInt(menuArguments[3], 10) === 3) {
-        response = "END Turacyakusanya amakuru yose!";
-        break;
-      } else if (parseInt(menuArguments[3], 10) === 4) {
-        response = "END Turacyakusanya amakuru yose!";
-        break;
-      } else if (parseInt(menuArguments[3], 10) === 5) {
-        response = "END Turacyakusanya amakuru yose!";
-        break;
-      } else if (parseInt(menuArguments[3], 10) === 6) {
-        response = "END Turacyakusanya amakuru yose!";
-        break;
-      } else if (parseInt(menuArguments[3], 10) === 7) {
-        response = "END Turacyakusanya amakuru yose!";
-        break;
-      } else {
-        response = "END Umubare muhisemo ntiwemewe!";
-        break;
-      }
-    }
-
     default:
       response = "END Wrong choice!";
       break;
